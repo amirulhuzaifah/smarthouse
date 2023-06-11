@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, StatusBar, Image} from 'react-native';
+import {View, Text, TouchableOpacity, StatusBar} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 import {Switch} from 'react-native-switch';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {NavigationContainer} from '@react-navigation/native';
 
-class App extends Component{
+
+class Page1 extends Component{
   constructor(props){
     super(props);
     this.state={ 
@@ -23,7 +23,6 @@ class App extends Component{
   }
   render(){
     return(
-      <NavigationContainer>
       <View style={{backgroundColor: '#43C6DB', flex: 1}}>
         <StatusBar backgroundColor='#15317E' barStyle='light-content'/>
         <View style={{
@@ -31,9 +30,7 @@ class App extends Component{
           borderBottomRightRadius:20,
           borderBottomLeftRadius:20,
           backgroundColor:'#15317E',}}>
-          <TouchableOpacity>
-          <Icon name="chevron-left" size={30} color="#43C6DB" />
-           </TouchableOpacity>
+
 
            <Text style={{
             color:'#ffff',
@@ -41,7 +38,7 @@ class App extends Component{
             fontWeight:'bold',
             marginTop:15
             }}>
-            Bedroom
+            Living Room
             </Text>
               <View style={{marginTop:30}}>
                 <View style={{
@@ -175,10 +172,10 @@ class App extends Component{
 
         />
       </View>
-      </NavigationContainer>
 
     );
   }
 }
 
-export default App;
+
+export default Page1;
