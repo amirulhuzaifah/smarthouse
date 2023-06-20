@@ -4,8 +4,23 @@ import {FlatGrid} from 'react-native-super-grid';
 import {Switch} from 'react-native-switch';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import PropTypes from 'prop-types';
+import { auth } from "./src/image/components/firebase";
 
+// const navigation = useNavigation();
 class Home extends Component {
+
+  handleLogout = () => {
+    const { navigation } = this.props;
+    auth.signOut()
+      .then(() => {
+        console.log('Logged out successfully');
+        navigation.navigate('LoginPage');
+        // Add any additional logic or navigation here after logout
+      })
+      .catch((error) => {
+        console.log('Logout error:', error.message);
+      });
+  };
   navigateToPage = (pageName) => {
       const { navigation } = this.props;
       navigation.navigate(pageName);
@@ -16,7 +31,7 @@ class Home extends Component {
       devices:[
         {
           place:'Living Room',
-          desc: 'Bla',
+          icon: 'couch',
           deviceCount:1,
           isOn:true,
           name: 'Details 1', 
@@ -24,7 +39,7 @@ class Home extends Component {
         },
         {
           place:'Kitchen',
-          desc: 'Bla',
+          icon: 'coffee',
           deviceCount:1,
           isOn:true,
           name: 'Details 2', 
@@ -32,7 +47,7 @@ class Home extends Component {
         },
         {
           place:'Store',
-          desc: 'Bla',
+          icon: 'box',
           deviceCount:1,
           isOn:true,
           name: 'Details 4', 
@@ -40,7 +55,7 @@ class Home extends Component {
         },
         {
           place:'Toilet',
-          desc: 'Bla',
+          icon: 'toilet',
           deviceCount:1,
           isOn:true,
           name: 'Details 3', 
@@ -52,6 +67,7 @@ class Home extends Component {
     };
   }
   render() {
+    // 
     return (
       <View style={{backgroundColor: '#43C6DB', flex: 1}}>
         <StatusBar backgroundColor='#43C6DB' barStyle='light-content'/>
@@ -87,9 +103,18 @@ class Home extends Component {
                           }}
                       key={index}
                       onPress={() => this.navigateToPage(item.name)}>
-                      <Text style={{fontSize:20, fontWeight:'bold'}}>{item.place}</Text>
-                      <Text style={{fontSize:15, color:'#778899'}}>{item.desc}</Text>
-                      <Text style={{fontSize:12, fontWeight:'bold'}}>{item.deviceCount} devices</Text>
+                      <Text style={{fontSize:23, fontWeight:'bold'}}>{item.place}</Text>
+                      <View style={{
+                       justifyContent:'center',
+                       alignItems:'center',
+                       marginTop:10,
+                       width:25,
+                       height:30,
+                      }}>
+                      <Icon name={item.icon} size={20} color='#15317E' />
+                      </View>
+                      
+                      {/* <Text style={{fontSize:12, fontWeight:'bold'}}>{item.deviceCount} devices</Text> */}
                       <Text>{item.isOn}</Text>
                       <Switch
                           value={item.isOn}
@@ -131,7 +156,7 @@ class Home extends Component {
         borderTopRightRadius:10,
         borderTopLeftRadius:10,}}>
 
-        <TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+        {/* <TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center'}}>
           <Icon name="map-marker" size={30} color="#15317E" />
         </TouchableOpacity>
         <TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center'}}>
@@ -139,10 +164,18 @@ class Home extends Component {
          </TouchableOpacity>
          <TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center'}}>
             <Icon name="home" size={30} color="#15317E" />
+          </TouchableOpacity>  */}
+        <TouchableOpacity
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+             onPress={this.handleLogout}
+          >
+            <Icon name="power-off" size={30} color="#FF0000" />
           </TouchableOpacity>
-          <TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-            <Icon name="cog" size={30} color="#15317E" />
-           </TouchableOpacity>
+          
 
       </View>
     </View>

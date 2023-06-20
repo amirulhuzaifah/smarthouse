@@ -3,6 +3,9 @@ import {View, Text, TouchableOpacity, StatusBar} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 import {Switch} from 'react-native-switch';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { onValue, ref } from 'firebase/database';
+import { db } from "./src/image/components/firebase";
+
 
 
 class Page1 extends Component{
@@ -18,10 +21,29 @@ class Page1 extends Component{
 
         }
         
-      ]
+      ],
+      Celsius: null,
+      humidity: null,
     };
   }
+
+  componentDidMount() {
+    // Read temperature value
+    const CelsiusRef = ref(db, 'House 1/temperature/Celsius');
+    onValue(CelsiusRef, (snapshot) => {
+      const Celsius = snapshot.val();
+      this.setState({ Celsius });
+    });
+    const humidityRef = ref(db, 'House 1/humidity/value');
+    onValue(humidityRef, (snapshot) => {
+      const value = snapshot.val();
+      this.setState({ value });
+    });
+  
+  }
+
   render(){
+    const { Celsius, value } = this.state;
     return(
       <View style={{backgroundColor: '#43C6DB', flex: 1}}>
         <StatusBar backgroundColor='#15317E' barStyle='light-content'/>
@@ -67,8 +89,8 @@ class Page1 extends Component{
                       fontWeight:'700',
                       fontSize:18,
                     }}>
-                      25°C
-                      </Text>
+                      {Celsius != null ? `${Celsius}°C` : ''}
+                  </Text>
                       <Text style={{
                       color:'#ffff',
                       fontWeight:'500',
@@ -102,8 +124,8 @@ class Page1 extends Component{
                         fontWeight:'700',
                         fontSize:18,
                       }}>
-                        50%
-                        </Text>
+                      {value!= null ? `${value}%` : ''} 
+                    </Text>
                         <Text style={{
                         color:'#ffff',
                         fontWeight:'500',

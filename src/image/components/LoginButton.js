@@ -2,13 +2,7 @@ import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
-const LoginButton = ({ navigation, color, text }) => {
-  const handlePress = () => {
-    if (navigation) {
-        navigation.navigate('Home');
-    }
-  };
-
+const LoginButton = ({ color, text, onPress }) => {
   return (
     <TouchableOpacity
       style={{
@@ -19,7 +13,7 @@ const LoginButton = ({ navigation, color, text }) => {
         borderRadius: 50,
         elevation: 2,
       }}
-      onPress={handlePress}
+      onPress={onPress}
     >
       <Text style={{ color: '#FFFFFF', textAlign: 'center', fontWeight: 'bold' }}>
         {text}
@@ -29,9 +23,9 @@ const LoginButton = ({ navigation, color, text }) => {
 };
 
 LoginButton.propTypes = {
-  navigation: PropTypes.object.isRequired,
   color: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
+  onPress: PropTypes.func.isRequired,
 };
 
 export default LoginButton;

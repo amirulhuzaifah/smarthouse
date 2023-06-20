@@ -4,6 +4,9 @@ import {FlatGrid} from 'react-native-super-grid';
 import {Switch} from 'react-native-switch';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
+import { onValue, ref } from 'firebase/database';
+import { db } from "./src/image/components/firebase";
+
 
 class Page2 extends Component{
   constructor(props){
@@ -18,10 +21,27 @@ class Page2 extends Component{
 
         }
         
-      ]
+      ],
+      Celsius: null,
+      Condition: null,
     };
   }
+  componentDidMount() {
+    // Read temperature value
+    const CelsiusRef = ref(db, 'House 1/temperature/Celsius');
+    onValue(CelsiusRef, (snapshot) => {
+      const Celsius = snapshot.val();
+      this.setState({ Celsius });
+    });
+    const gasRef = ref(db, 'House 1/gas/Condition');
+    onValue(gasRef, (snapshot) => {
+      const Condition = snapshot.val();
+      this.setState({ Condition });
+    });
+  
+  }
   render(){
+    const { Celsius, Condition } = this.state;
     return(
       <View style={{backgroundColor: '#43C6DB', flex: 1}}>
         <StatusBar backgroundColor='#15317E' barStyle='light-content'/>
@@ -67,7 +87,7 @@ class Page2 extends Component{
                       fontWeight:'700',
                       fontSize:18,
                     }}>
-                      25°C
+                      {Celsius != null ? `${Celsius}°C` : ''}
                       </Text>
                       <Text style={{
                       color:'#ffff',
@@ -102,7 +122,7 @@ class Page2 extends Component{
                         fontWeight:'700',
                         fontSize:18,
                       }}>
-                        50%
+                        {Condition!= null ? `${Condition}` : ''} 
                         </Text>
                         <Text style={{
                         color:'#ffff',
