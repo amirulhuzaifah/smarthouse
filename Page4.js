@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, StatusBar} from 'react-native';
+import {View, Text, TouchableOpacity, StatusBar,Alert} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 import {Switch} from 'react-native-switch';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { onValue, ref } from 'firebase/database';
 import { db } from "./src/image/components/firebase";
+import { Linking } from 'react-native';
 
 class Page3 extends Component{
   constructor(props){
@@ -36,7 +37,27 @@ class Page3 extends Component{
     onValue(cameraRef, (snapshot) => {
       const Condition = snapshot.val();
       this.setState({ Condition });
+      if (Condition == "Motion Detected!"){
+        this.showCamAlert();
+      }
     });
+  }
+  showCamAlert=()=>{
+    Alert.alert(
+      'Security Alert',
+      'Someone just entered your store ! Please check your SD card.',
+      
+      [
+        { text: 'Call Emergency', onPress: this.handleCallEmergency },
+        { text: 'Cancel', style: 'cancel' }
+      ],
+      { cancelable: false }
+    );
+  };
+
+  handleCallEmergency = () => {
+    Linking.openURL('tel:911');
+  
   }
   render(){
     const { Celsius, Condition } = this.state;

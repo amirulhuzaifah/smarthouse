@@ -19,7 +19,7 @@ const LoginPage = () => {
             // Login successful
             const user = userCredential.user;
             console.log("Logged in user:", user);
-            navigation.navigate("Home"); // Navigate to the home page
+            navigation.replace("Home"); // Navigate to the home page
           })
           .catch((error) => {
             // Handle login error

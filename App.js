@@ -17,15 +17,15 @@ const Stack = createStackNavigator();
 
 function App() {
   const [initializing,setInitizalizing]=useState(true);
-  useEffect(()=> {
-    onAuthStateChanged(auth,(user)=>{
-      
-      setInitizalizing(user)
-    })
-  })
+  useEffect(() => {
+  onAuthStateChanged(auth, (user) => {
+    setInitizalizing(user);
+  });
+}, []);
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={!initializing?'LoginPage':'Home'}>
+      <Stack.Navigator initialRouteName={initializing?'LoginPage':'Home'}>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Details 1" component={Page1} />
       <Stack.Screen name="Details 2" component={Page2} />

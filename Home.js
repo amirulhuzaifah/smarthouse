@@ -14,7 +14,7 @@ class Home extends Component {
     auth.signOut()
       .then(() => {
         console.log('Logged out successfully');
-        navigation.navigate('LoginPage');
+        navigation.replace('LoginPage');
         // Add any additional logic or navigation here after logout
       })
       .catch((error) => {
