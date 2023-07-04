@@ -102,7 +102,8 @@ class Home extends Component {
                             padding:20,
                           }}
                       key={index}
-                      onPress={() => this.navigateToPage(item.name)}>
+                      onPress={() => this.navigateToPage(item.name)}
+                      disabled={!item.isOn}>
                       <Text style={{fontSize:23, fontWeight:'bold'}}>{item.place}</Text>
                       <View style={{
                        justifyContent:'center',
@@ -156,15 +157,6 @@ class Home extends Component {
         borderTopRightRadius:10,
         borderTopLeftRadius:10,}}>
 
-        {/* <TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-          <Icon name="map-marker" size={30} color="#15317E" />
-        </TouchableOpacity>
-        <TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-          <Icon name="clock" size={30} color="#15317E" />
-         </TouchableOpacity>
-         <TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-            <Icon name="home" size={30} color="#15317E" />
-          </TouchableOpacity>  */}
         <TouchableOpacity
             style={{
               flex: 1,
