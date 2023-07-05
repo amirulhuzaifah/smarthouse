@@ -45,7 +45,7 @@ class Page2 extends Component{
     onValue(fireRef, (snapshot) => {
       const value = snapshot.val();
       this.setState({ value });
-      if (value == 1) {
+      if (value == 0) {
         this.showFireAlert();
       }
     });
@@ -184,7 +184,7 @@ class Page2 extends Component{
                 <Text style={{fontSize:20, fontWeight:'bold', marginLeft:20}}>{item.deviceName}</Text>
                 <Text style={{fontSize:15, color:'#778899',marginLeft:20}}>{item.status}</Text>
                 </View>    
-                <Switch
+                {/* <Switch
                   value={item.isOn}
                   onValueChange={(val) =>{
                     let data = this.state.devices;
@@ -209,7 +209,7 @@ class Page2 extends Component{
                   switchRightPx={2} // denominator for logic when sliding to FALSE position. Higher number = more space from LEFT of the circle to BEGINNING of the slider
                   switchWidthMultiplier={2} // multiplied by the `circleSize` prop to calculate total width of the Switch
                   switchBorderRadius={30} // Sets the border Radius of the switch slider. If unset, it remains the circleSize.
-                />
+                /> */}
                </View>
 
 

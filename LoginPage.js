@@ -43,6 +43,8 @@ const LoginPage = () => {
             <Text style={{
                 fontSize:25,
                 fontWeight:'bold',
+                color:"#2B3856"
+                
             }}>
                 Smart
             <Text style={{
@@ -66,6 +68,7 @@ const LoginPage = () => {
             placeholder="Insert Email"
             isPassword={false}
             icon="envelope"
+            
             />
 
          <TextInputData
@@ -74,6 +77,7 @@ const LoginPage = () => {
             placeholder="Insert Password"
             isPassword={true}
             icon="lock"
+            
             />
 
 <LoginButton text="Login" color="#2396F2" onPress={handleLogin}/>

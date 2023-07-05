@@ -104,7 +104,7 @@ class Home extends Component {
                       key={index}
                       onPress={() => this.navigateToPage(item.name)}
                       disabled={!item.isOn}>
-                      <Text style={{fontSize:23, fontWeight:'bold'}}>{item.place}</Text>
+                      <Text style={{fontSize:23, fontWeight:'bold', color:"#000000"}}>{item.place}</Text>
                       <View style={{
                        justifyContent:'center',
                        alignItems:'center',

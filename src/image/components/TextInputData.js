@@ -20,7 +20,7 @@ const TextInputData = props => {
             borderBottomLeftRadius: 15,
             elevation: 2,
           }}>
-          <Icon name={props.icon} size={20} />
+          <Icon name={props.icon} size={20} color="#2396F2"/>
         </View>
              <TextInput
             value={props.state}

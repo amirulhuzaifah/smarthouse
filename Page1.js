@@ -24,6 +24,7 @@ class Page1 extends Component{
       ],
       Celsius: null,
       humidity: null,
+      FAN: null
     };
   }
 
@@ -39,11 +40,16 @@ class Page1 extends Component{
       const value = snapshot.val();
       this.setState({ value });
     });
+    const FANRef = ref(db, 'House 1/temperature/FAN');
+    onValue(FANRef, (snapshot) => {
+      const FAN = snapshot.val();
+      this.setState({FAN });
+    });
   
   }
 
   render(){
-    const { Celsius, value } = this.state;
+    const { Celsius, value, FAN } = this.state;
     return(
       <View style={{backgroundColor: '#43C6DB', flex: 1}}>
         <StatusBar backgroundColor='#15317E' barStyle='light-content'/>
@@ -58,7 +64,7 @@ class Page1 extends Component{
             color:'#ffff',
             fontSize:28, 
             fontWeight:'bold',
-            marginTop:15
+            marginTop:15,
             }}>
             Living Room
             </Text>
@@ -156,10 +162,12 @@ class Page1 extends Component{
                 }}>
                 <Icon name="fan" size={65} color="#15317E" />
                 <View style={{flex:1, justifyContent:'center'}}>
-                <Text style={{fontSize:20, fontWeight:'bold', marginLeft:20}}>{item.deviceName}</Text>
-                <Text style={{fontSize:15, color:'#778899',marginLeft:20}}>{item.status}</Text>
+                <Text style={{fontSize:20, fontWeight:'bold', marginLeft:20, color:"#000000"}}>{item.deviceName}</Text>
+                <Text style={{fontSize:15, color:'#778899',marginLeft:20}}>
+                {FAN != null ? `${ FAN }` : ''}
+                </Text>
                 </View>    
-                <Switch
+                {/* <Switch
                   value={item.isOn}
                   onValueChange={(val) =>{
                     let data = this.state.devices;
@@ -184,7 +192,7 @@ class Page1 extends Component{
                   switchRightPx={2} // denominator for logic when sliding to FALSE position. Higher number = more space from LEFT of the circle to BEGINNING of the slider
                   switchWidthMultiplier={2} // multiplied by the `circleSize` prop to calculate total width of the Switch
                   switchBorderRadius={30} // Sets the border Radius of the switch slider. If unset, it remains the circleSize.
-                />
+                /> */}
                </View>
 
 
