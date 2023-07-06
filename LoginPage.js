@@ -77,6 +77,7 @@ const LoginPage = () => {
             placeholder="Insert Password"
             isPassword={true}
             icon="lock"
+
             
             />
 

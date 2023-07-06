@@ -152,7 +152,7 @@ class Page3 extends Component{
                 }}>
                 <Icon name="lightbulb"size={65} color="#15317E" />
                 <View style={{flex:1, justifyContent:'center'}}>
-                <Text style={{fontSize:20, fontWeight:'bold', marginLeft:20}}>{item.deviceName}</Text>
+                <Text style={{fontSize:20, fontWeight:'bold', marginLeft:20, color:"#000000"}}>{item.deviceName}</Text>
                 <Text style={{fontSize:15, color:'#778899',marginLeft:20}}>{item.status}</Text>
                 </View>    
                 {/* <Switch

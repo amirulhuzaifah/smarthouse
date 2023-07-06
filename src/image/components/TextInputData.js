@@ -34,9 +34,11 @@ const TextInputData = props => {
             paddingVertical: 15,
             elevation: 2,
             paddingLeft: 10,
-            }}
+            color:'#000000',
+             }}
 
             placeholder= {props.placeholder}
+            placeholderTextColor="#0000FF"
             onChangeText={handleTextChange}
             secureTextEntry={props.isPassword}
             />
